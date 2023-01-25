@@ -38,10 +38,15 @@ start-api: bind-polygon
 build-api-container:
 	docker build -t ${NSPACE}/${APP}:${VER} .
 
+push-api-container: build-api-container
+	sudo docker push ${NSPACE}/${APP}:${VER}
+
 k8s-apply:
 	kubectl apply -f kubernetes/deployment.yaml
 	kubectl apply -f kubernetes/service.yaml
+	kubectl apply -f kubernetes/ingress.yaml
 
 clean-k8s:
 	kubectl delete svc restful-polygon-service
 	kubectl delete deployment restful-polygon-deployment
+	kubectl delete ing restful-polygon-ingress

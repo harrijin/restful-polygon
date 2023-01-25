@@ -4,18 +4,31 @@ from polygon3d import Point3D, Polygon3D
 
 HELP_TEXT = """
     Check whether a 3-dimensional point lies within or outside of a 3-dimensional polygon.
+    Points on an edge or vertex will return false. 
     Send a POST request to the /contains endpoint with the following format:
     {
-        "point": [1.0, 1.5, 1.2],
+        "point": [0.5, 0.5, 0.0],
         "polygon_vertices":
             [
-                [0.0, 2.0, 1.0],
-                [1.0, -1.0, 3.0],
-                [-1.0, 2.5, 0.0]
+                [0.0, 1.0, 0.0],
+                [1.0, 1.0, 0.0],
+                [1.0, 0.0, 0.0],
+                [0.0, 0.0, 0.0]
             ]
     }
     The 'point' field should contain a 3-dimensional point, and the 'polygon_vertices' field
     should contain a list of at least three 3-dimensional points that form a valid polygon.
+    Example successful response for the above request:
+    {
+        "point": [0.5, 0.5, 0.0],
+        "polygon_contains_point": true,
+        "polygon_vertices": [
+            [0.0, 1.0, 0.0],
+            [1.0, 1.0, 0.0],
+            [1.0, 0.0, 0.0],
+            [0.0, 0.0, 0.0]
+        ]
+    }
 """
 
 app = Flask(__name__)
@@ -37,7 +50,9 @@ def contains():
         )
         return jsonify(
             {
-                "polygon_contains_point": polygon.contains(
+                'polygon_vertices': request_data['polygon_vertices'],
+                'point': request_data['point'],
+                'polygon_contains_point': polygon.contains(
                     Point3D(
                         request_data['point'][0],
                         request_data['point'][1],

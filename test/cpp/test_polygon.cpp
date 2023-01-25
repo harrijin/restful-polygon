@@ -40,7 +40,14 @@ TEST(Polygon3DTest, containsPoints) {
     };
     Polygon3D coplanarPolygon(coplanarPoints);
     EXPECT_EQ(coplanarPolygon.getVertices(), coplanarPoints);
+    // Nominally contains
     EXPECT_TRUE(coplanarPolygon.contains(Point3D(0.25,0.25,0)));
+    // Vertex
+    EXPECT_TRUE(coplanarPolygon.contains(Point3D(0,0.9999,0)));
+    EXPECT_FALSE(coplanarPolygon.contains(Point3D(0,1,0)));
+    // Edge
+    EXPECT_TRUE(coplanarPolygon.contains(Point3D(0.5,0.99999,0)));
+    EXPECT_FALSE(coplanarPolygon.contains(Point3D(0.5,1,0)));
     // Not coplanar
     EXPECT_FALSE(coplanarPolygon.contains(Point3D(1,1,1)));
     // Coplanar, but doesn't contain
