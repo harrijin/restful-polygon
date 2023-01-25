@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: restful-polygon-service
+    labels:
+        username: harrijin
+spec:
+    type: ClusterIP
+    selector:
+        app: restful-polygon-api
+    ports:
+      - name: restful-polygon-api
+        port: 5000

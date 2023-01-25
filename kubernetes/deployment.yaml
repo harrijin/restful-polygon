@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: restful-polygon-deployment
+    labels:
+        username: harrijin
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: restful-polygon-api
+    template:
+        metadata:
+            labels:
+                username: harrijin
+                app: restful-polygon-api
+        spec:
+            containers:
+              - name: restful-polygon-api
+                image: harrijin/restful-polygon:latest
+                imagePullPolicy: Always
+                ports:
+                  - containerPort: 5000
