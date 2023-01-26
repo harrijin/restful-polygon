@@ -62,11 +62,11 @@ This will run the API on `localhost`.
 make test-all
 ```
 
-This will run all unit tests in the `test/` directory, which includes a unit test for the C++ polygon code as well as a test for the Flask API. 
+This will run all unit tests in the `test/` directory, which includes a unit test for the C++ polygon code as well as a unit test for the Flask API. 
 
 ## Endpoints
 
-- `/` (GET Request) - Returns the following help message.
+- `/` - (GET Request) - Returns the following help message.
 ```
     Check whether a 3-dimensional point lies within or outside of a 3-dimensional polygon.
     Points on an edge or vertex will return false. 
