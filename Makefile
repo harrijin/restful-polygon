@@ -36,7 +36,7 @@ start-api: bind-polygon
 	flask --app $(PROJECT_DIR)/src/api.py run --host=0.0.0.0
 
 build-api-container:
-	docker build -t ${NSPACE}/${APP}:${VER} .
+	sudo docker build -t ${NSPACE}/${APP}:${VER} .
 
 push-api-container: build-api-container
 	sudo docker push ${NSPACE}/${APP}:${VER}
