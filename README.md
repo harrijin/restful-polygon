@@ -64,7 +64,7 @@ make test-all
 
 This will run all unit tests in the `test/` directory, which includes a unit test for the C++ polygon code as well as a unit test for the Flask API. 
 
-## Endpoints
+## API Endpoints
 
 - `/` - (GET Request) - Returns the following help message.
 ```
