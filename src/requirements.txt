@@ -1,2 +1,2 @@
-Flask
-pybind11
+Flask==2.2.2
+pybind11==2.10.3
